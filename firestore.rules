@@ -1,0 +1,20 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    match /quotes/{quoteId} {
+      // Allow anyone to create a quote (for now, for simplicity)
+      // and read their own quote if they have the ID
+      allow read, create: if true;
+      allow update, delete: if true; // Admin or owner logic can be added later
+
+      match /messages/{messageId} {
+        allow read, write: if true;
+      }
+    }
+  }
+}

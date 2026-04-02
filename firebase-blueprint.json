@@ -1,0 +1,43 @@
+{
+  "entities": {
+    "Quote": {
+      "title": "Quote",
+      "description": "A freight quote request",
+      "type": "object",
+      "properties": {
+        "origin": { "type": "string" },
+        "destination": { "type": "string" },
+        "tonnage": { "type": "string" },
+        "vehicleBody": { "type": "string" },
+        "cargoDetails": { "type": "string" },
+        "contact": { "type": "string" },
+        "estimatedFare": { "type": "number" },
+        "distance": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "status": { "type": "string", "enum": ["pending", "contacted", "completed"] }
+      },
+      "required": ["origin", "destination", "tonnage", "vehicleBody", "contact", "estimatedFare", "distance", "createdAt"]
+    },
+    "Message": {
+      "title": "Message",
+      "description": "A chat message within a quote",
+      "type": "object",
+      "properties": {
+        "text": { "type": "string" },
+        "sender": { "type": "string", "enum": ["user", "admin"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["text", "sender", "createdAt"]
+    }
+  },
+  "firestore": {
+    "quotes": {
+      "schema": "Quote",
+      "description": "Collection of quotes"
+    },
+    "quotes/{quoteId}/messages": {
+      "schema": "Message",
+      "description": "Messages for a quote"
+    }
+  }
+}

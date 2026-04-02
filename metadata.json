@@ -1,0 +1,5 @@
+{
+  "name": "전국특송화물 견적신청",
+  "description": "전국특송화물 화물 운송 견적 신청 어플리케이션. 거리 및 차종별 자동 견적 산출 기능을 제공합니다.",
+  "requestFramePermissions": ["geolocation"]
+}
